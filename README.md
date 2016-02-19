@@ -1,6 +1,6 @@
 # fast-ratelimit
 
-[![Build Status](https://travis-ci.org/valeriansaliou/fast-ratelimit.svg?branch=master)](https://travis-ci.org/valeriansaliou/fast-ratelimit) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valeriansaliou/fast-ratelimit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/valeriansaliou/fast-ratelimit.svg?branch=master)](https://travis-ci.org/valeriansaliou/fast-ratelimit)
 
 Fast & efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
