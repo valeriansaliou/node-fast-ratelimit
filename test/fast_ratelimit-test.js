@@ -141,6 +141,9 @@ describe("fast-ratelimit", function() {
     });
 
     it("should expire token according to TTL", function(done) {
+      // Do not consider timeout as slow
+      this.slow(5000);
+
       var options = {
         threshold : 2,
         ttl       : 1
