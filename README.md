@@ -8,6 +8,8 @@ This rate-limiter was designed to be as generic as possible, usable in any NodeJ
 
 ## How to install?
 
+**Ensure your NodeJS version is 5.4 or higher** (we use some ECMAScript 6 syntax that are not backwards-compatible).
+
 Include `rate-limit` in your `package.json` dependencies.
 
 ## How to use?

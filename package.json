@@ -30,7 +30,7 @@
 
   "engineStrict": true,
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 5.4.0"
   },
 
   "scripts": {
