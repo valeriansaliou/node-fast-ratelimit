@@ -1,7 +1,7 @@
 {
   "name": "fast-ratelimit",
   "description": "Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/valeriansaliou/fast-ratelimit",
 
   "author": {
@@ -33,7 +33,7 @@
   },
 
   "scripts": {
-    "test": "check-build && mocha --reporter spec test/*-test.js"
+    "test": "npm install && check-build && mocha --reporter spec test/*-test.js"
   },
 
   "devDependencies": {
