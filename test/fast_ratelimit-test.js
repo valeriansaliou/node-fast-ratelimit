@@ -13,11 +13,10 @@ var FastRateLimit = require("../").FastRateLimit;
 var assert = require("assert");
 
 
-var __Promise = Promise;
-
-if (typeof __Promise === "undefined") {
-  __Promise = require("es6-promise-polyfill").Promise;
-}
+var __Promise = (
+  (typeof Promise !== "undefined") ?
+    Promise : require("es6-promise-polyfill").Promise
+);
 
 
 describe("fast-ratelimit", function() {
