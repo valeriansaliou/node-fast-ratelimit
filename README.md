@@ -6,11 +6,9 @@ Fast & efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or vanilla code.
 
-## Why not using existing similar modules?
+## How to install?
 
-I was looking for an efficient, yet simple, DOS-prevention technique that wouldn't hurt performance and consume tons of memory. All proper modules I found were relying on Redis as the keystore for limits, which is definitely not great if you want to keep away from DOS attacks: using such a module under DOS conditions would subsequently DOS Redis since 1 (or more) Redis queries are made per limit check (1 attacker request = 1 limit check). Attacks should definitely not be allieviated this way, although a Redis-based solution would be perfect to limit abusing users.
-
-This module keeps all limits in-memory, which is much better for our attack-prevention concern. The only downside: since the limits database isn't shared, limits are per-process. This means that you should only use this module to prevent hard-attacks at any level of your infrastructure. This works pretty well for micro-service infrastructures, which is what we're using it in.
+Include `rate-limit` in your `package.json` dependencies.
 
 ## How to use?
 
@@ -81,3 +79,9 @@ if (messageLimiter.consumeSync(namespace) >= 0) {
   // Silently discard message
 }
 ```
+
+## Why not using existing similar modules?
+
+I was looking for an efficient, yet simple, DOS-prevention technique that wouldn't hurt performance and consume tons of memory. All proper modules I found were relying on Redis as the keystore for limits, which is definitely not great if you want to keep away from DOS attacks: using such a module under DOS conditions would subsequently DOS Redis since 1 (or more) Redis queries are made per limit check (1 attacker request = 1 limit check). Attacks should definitely not be allieviated this way, although a Redis-based solution would be perfect to limit abusing users.
+
+This module keeps all limits in-memory, which is much better for our attack-prevention concern. The only downside: since the limits database isn't shared, limits are per-process. This means that you should only use this module to prevent hard-attacks at any level of your infrastructure. This works pretty well for micro-service infrastructures, which is what we're using it in.
