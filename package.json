@@ -28,13 +28,16 @@
 
   "main": "lib/fast_ratelimit",
 
-  "engineStrict": true,
   "engines": {
-    "node": ">= 5.4.0"
+    "node": ">= 0.10.0"
   },
 
   "scripts": {
     "test": "npm install && check-build && mocha --reporter spec test/*-test.js"
+  },
+
+  "dependencies": {
+    "es6-promise-polyfill": "1.2.0"
   },
 
   "devDependencies": {

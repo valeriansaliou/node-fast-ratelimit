@@ -8,8 +8,6 @@ This rate-limiter was designed to be as generic as possible, usable in any NodeJ
 
 ## How to install?
 
-**Ensure your NodeJS version is 5.4 or higher** (we use some ECMAScript 6 syntax that are not backwards-compatible).
-
 Include `rate-limit` in your `package.json` dependencies.
 
 ## How to use?
@@ -46,6 +44,8 @@ The reset scheduling is done per-namespace; eg: if namespace `user_1` sends 1 me
 On the message send portion of our application code, we would add a call to the ratelimiter instance.
 
 #### 2.2. Use asynchronous API (Promise catch/reject)
+
+**To use the asynchronous API, you need to ensure your NodeJS version supports Promises** (we use some ECMAScript 6 syntax that are not backwards-compatible). You can still use the synchronous API if it doesn't (the asynchronous API will throw in this case).
 
 ```javascript
 // This would be dynamic in your application, based on user session data, or user IP

@@ -12,6 +12,8 @@
 var FastRateLimit = require("../").FastRateLimit;
 var assert = require("assert");
 
+var __Promise = require("es6-promise-polyfill").Promise;
+
 
 describe("fast-ratelimit", function() {
   describe("consumeSync method", function() {
@@ -170,7 +172,7 @@ describe("fast-ratelimit", function() {
         );
       }
 
-      Promise.all(promises_all)
+      __Promise.all(promises_all)
         .then(function(remaining_tokens_list) {
           assert.equal(
             remaining_tokens_list[remaining_tokens_list.length - 1], 0,
