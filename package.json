@@ -33,7 +33,7 @@
   },
 
   "scripts": {
-    "test": "npm install && check-build && mocha --reporter spec test/*-test.js"
+    "test": "check-build && mocha --reporter spec test/*-test.js"
   },
 
   "dependencies": {

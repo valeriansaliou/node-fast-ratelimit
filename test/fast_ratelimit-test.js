@@ -17,6 +17,28 @@ var __Promise = require("es6-promise-polyfill").Promise;
 
 describe("fast-ratelimit", function() {
   describe("consumeSync method", function() {
+    it("should not rate limit an empty namespace", function() {
+      var limiter = new FastRateLimit({
+        threshold : 100,
+        ttl       : 10
+      });
+
+      assert.equal(
+        limiter.consumeSync(null), 1,
+        "Limiter consume should return 1 for `null` (null) namespace (resolve)"
+      );
+
+      assert.equal(
+        limiter.consumeSync(""), 1,
+        "Limiter consume should return 1 for `` (blank) namespace (resolve)"
+      );
+
+      assert.equal(
+        limiter.consumeSync(0), 1,
+        "Limiter consume should return 1 for `0` (number) namespace (resolve)"
+      );
+    });
+
     it("should not rate limit a single namespace", function() {
       var options = {
         threshold : 100,
