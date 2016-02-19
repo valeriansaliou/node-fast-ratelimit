@@ -28,7 +28,7 @@ Here's how to proceed (we take the example of rate-limiting messages sending in 
 The rate-limiter can be instanciated as such:
 
 ```javascript
-var FastRateLimit = require("fast-ratelimit");
+var FastRateLimit = require("fast-ratelimit").FastRateLimit;
 
 var messageLimiter = new FastRateLimit({
   threshold : 20 // available limit tokens on given ttl value.
