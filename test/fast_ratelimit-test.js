@@ -21,27 +21,6 @@ var __Promise = (
 
 describe("fast-ratelimit", function() {
   describe("consumeSync method", function() {
-    it("should store namespaced limits", function() {
-      var limiter = new FastRateLimit({
-        threshold : 2,
-        ttl       : 10
-      });
-
-      limiter.consumeSync("user_1");
-      limiter.consumeSync("user_1");
-      limiter.consumeSync("user_2");
-
-      assert.equal(
-        limiter.__tokens.user_1, 0,
-        "Tokens storage should contain user_1 key with 0 value"
-      );
-
-      assert.equal(
-        limiter.__tokens.user_2, 1,
-        "Tokens storage should contain user_2 key with 1 value"
-      );
-    });
-
     it("should not rate limit an empty namespace", function() {
       var limiter = new FastRateLimit({
         threshold : 100,
@@ -231,15 +210,47 @@ describe("fast-ratelimit", function() {
 
           done();
         })
-        .catch(function() {
-          done(
-            new Error("Limiter consume should not fail at the end (reject)")
-          );
+        .catch(function(error) {
+          if (error) {
+            done(error);
+          } else {
+            done(
+              new Error("Limiter consume should not fail at the end (reject)")
+            );
+          }
         });
     });
 
     it("should rate limit", function(done) {
-      done();
+      var options = {
+        threshold : 100,
+        ttl       : 10
+      };
+
+      var namespace = "127.0.0.1";
+      var limiter = new FastRateLimit(options);
+
+      var promises_all = [];
+
+      for (var i = 1; i <= (options.threshold + 5); i++) {
+        promises_all.push(
+          limiter.consume(namespace)
+        );
+      }
+
+      __Promise.all(promises_all)
+        .then(function(remaining_tokens_list) {
+          done(
+            new Error("Limiter consume should not succeed at the end (reject)")
+          );
+        })
+        .catch(function(error) {
+          if (error) {
+            done(error);
+          } else {
+            done();
+          }
+        });
     });
   });
 });

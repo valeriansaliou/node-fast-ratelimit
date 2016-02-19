@@ -1,7 +1,7 @@
 {
   "name": "fast-ratelimit",
   "description": "Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "homepage": "https://github.com/valeriansaliou/fast-ratelimit",
 
   "author": {
@@ -37,6 +37,7 @@
   },
 
   "dependencies": {
+    "hashtable": "2.0.1",
     "es6-promise-polyfill": "1.2.0"
   },
 
