@@ -27,19 +27,19 @@ describe("fast-ratelimit", function() {
         ttl       : 10
       });
 
-      assert.equal(
-        limiter.consumeSync(null), 1,
-        "Limiter consume should return 1 for `null` (null) namespace (resolve)"
+      assert.ok(
+        limiter.consumeSync(null),
+        "Limiter consume should succeed for `null` (null) namespace (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(""), 1,
-        "Limiter consume should return 1 for `` (blank) namespace (resolve)"
+      assert.ok(
+        limiter.consumeSync(""),
+        "Limiter consume should succeed for `` (blank) namespace (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(0), 1,
-        "Limiter consume should return 1 for `0` (number) namespace (resolve)"
+      assert.ok(
+        limiter.consumeSync(0),
+        "Limiter consume should succeed for `0` (number) namespace (resolve)"
       );
     });
 
@@ -53,10 +53,9 @@ describe("fast-ratelimit", function() {
       var limiter = new FastRateLimit(options);
 
       for (var i = 1; i <= options.threshold; i++) {
-        assert.equal(
+        assert.ok(
           limiter.consumeSync(namespace),
-          (options.threshold - i),
-          "Limiter consume should equal to the number of remaining tokens"
+          "Limiter consume should succeed"
         );
       }
     });
@@ -69,24 +68,24 @@ describe("fast-ratelimit", function() {
         ttl       : 10
       });
 
-      assert.equal(
-        limiter.consumeSync(namespace), 2,
-        "Limiter consume should equal 2 at consume #1 (resolve)"
+      assert.ok(
+        limiter.consumeSync(namespace),
+        "Limiter consume succeed at consume #1 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(namespace), 1,
-        "Limiter consume should equal 1 at consume #2 (resolve)"
+      assert.ok(
+        limiter.consumeSync(namespace),
+        "Limiter consume succeed at consume #2 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(namespace), 0,
-        "Limiter consume should equal 0 at consume #3 (resolve)"
+      assert.ok(
+        limiter.consumeSync(namespace),
+        "Limiter consume succeed at consume #3 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(namespace), -1,
-        "Limiter consume should equal -1 at consume #4 (reject)"
+      assert.ok(
+        !(limiter.consumeSync(namespace)),
+        "Limiter consume fail at consume #4 (reject)"
       );
     });
 
@@ -96,14 +95,14 @@ describe("fast-ratelimit", function() {
         ttl       : 10
       });
 
-      assert.equal(
-        limiter.consumeSync("user_1"), 1,
-        "Limiter consume should equal 1 at consume #1 of user_1 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_1"),
+        "Limiter consume should succeed at consume #1 of user_1 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_2"), 1,
-        "Limiter consume should equal 1 at consume #1 of user_2 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_2"),
+        "Limiter consume should succeed at consume #1 of user_2 (resolve)"
       );
     });
 
@@ -113,34 +112,34 @@ describe("fast-ratelimit", function() {
         ttl       : 10
       });
 
-      assert.equal(
-        limiter.consumeSync("user_1"), 1,
-        "Limiter consume should equal 1 at consume #1 of user_1 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_1"),
+        "Limiter consume should succeed at consume #1 of user_1 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_2"), 1,
-        "Limiter consume should equal 1 at consume #1 of user_2 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_2"),
+        "Limiter consume should succeed at consume #1 of user_2 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_1"), 0,
-        "Limiter consume should equal 0 at consume #2 of user_1 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_1"),
+        "Limiter consume should succeed at consume #2 of user_1 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_2"), 0,
-        "Limiter consume should equal 0 at consume #2 of user_2 (resolve)"
+      assert.ok(
+        limiter.consumeSync("user_2"),
+        "Limiter consume should succeed at consume #2 of user_2 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_1"), -1,
-        "Limiter consume should equal -1 at consume #3 of user_1 (reject)"
+      assert.ok(
+        !(limiter.consumeSync("user_1")),
+        "Limiter consume should fail at consume #3 of user_1 (reject)"
       );
 
-      assert.equal(
-        limiter.consumeSync("user_2"), -1,
-        "Limiter consume should equal -1 at consume #3 of user_2 (reject)"
+      assert.ok(
+        !(limiter.consumeSync("user_2")),
+        "Limiter consume should fail at consume #3 of user_2 (reject)"
       );
     });
 
@@ -156,30 +155,64 @@ describe("fast-ratelimit", function() {
       var namespace = "127.0.0.1";
       var limiter = new FastRateLimit(options);
 
-      assert.equal(
-        limiter.consumeSync(namespace), 1,
-        "Limiter consume should equal 1 at consume #1 (resolve)"
+      assert.ok(
+        limiter.consumeSync(namespace),
+        "Limiter consume should succeed at consume #1 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(namespace), 0,
-        "Limiter consume should equal 0 at consume #2 (resolve)"
+      assert.ok(
+        limiter.consumeSync(namespace),
+        "Limiter consume should succeed at consume #2 (resolve)"
       );
 
-      assert.equal(
-        limiter.consumeSync(namespace), -1,
-        "Limiter consume should equal -1 at consume #3 (reject)"
+      assert.ok(
+        !(limiter.consumeSync(namespace)),
+        "Limiter consume should fail at consume #3 (reject)"
       );
 
       // Wait for TTL reset.
       setTimeout(function() {
-        assert.equal(
-          limiter.consumeSync(namespace), 1,
-          "Limiter consume should equal 1 at consume #4 (resolve)"
+        assert.ok(
+          limiter.consumeSync(namespace),
+          "Limiter consume should succeed at consume #4 (resolve)"
         );
 
         done();
       }, ((options.ttl * 1000) + 100));
+    });
+
+    it("should not block writing random namespaces", function(done) {
+      // Timeout if longer than 2 seconds (check for blocking writes)
+      this.timeout(2000);
+
+      var limiter = new FastRateLimit({
+        threshold : 100,
+        ttl       : 60
+      });
+
+      var asyncFlowSteps = 10000,
+          asyncFlowTotal = 4,
+          asyncFlowCountDone = 0;
+
+      var launchAsyncFlow = function(id) {
+        setTimeout(function() {
+          for (var i = 0; i < asyncFlowSteps; i++) {
+            assert.ok(
+              limiter.consumeSync("flow-" + id + "-" + i),
+              "Limiter consume should succeed at flow #" + id + " (resolve)"
+            );
+          }
+
+          if (++asyncFlowCountDone === asyncFlowTotal) {
+            done();
+          }
+        });
+      }
+
+      // Launch asynchronous flows
+      for (var i = 1; i <= asyncFlowTotal; i++) {
+        launchAsyncFlow(i);
+      }
     });
   });
 
@@ -202,12 +235,7 @@ describe("fast-ratelimit", function() {
       }
 
       __Promise.all(promises_all)
-        .then(function(remaining_tokens_list) {
-          assert.equal(
-            remaining_tokens_list[remaining_tokens_list.length - 1], 0,
-            "Limiter remaining tokens should equal -1 at the end (resolve)"
-          );
-
+        .then(function() {
           done();
         })
         .catch(function(error) {

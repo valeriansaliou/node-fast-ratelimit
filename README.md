@@ -53,8 +53,8 @@ namespace = "user_1";
 
 // Check if user is allowed to send message
 messageLimiter.consume(namespace)
-  .then((remaining_tokens) => {
-    // Consumed a token, remaining_tokens is passed with the number of remaining tokens for next message sends
+  .then(() => {
+    // Consumed a token
     // Send message
     message.send();
   })
@@ -70,14 +70,13 @@ messageLimiter.consume(namespace)
 // This would be dynamic in your application, based on user session data, or user IP
 namespace = "user_1";
 
-// Check if user is allowed to send message (consumeSync returns remaining tokens as in asynchronous API)
-// BEWARE: if consumeSync returns 0, it means the last remaining token was consumed, which means that the message can be sent
-if (messageLimiter.consumeSync(namespace) >= 0) {
-  // Consumed a token, remaining_tokens is passed with the number of remaining tokens for next message sends
+// Check if user is allowed to send message
+if (messageLimiter.consumeSync(namespace) === true) {
+  // Consumed a token
   // Send message
   message.send();
 } else {
-  // consumeSync returned -1 since there's no more tokens available
+  // consumeSync returned false since there's no more tokens available
   // Silently discard message
 }
 ```
