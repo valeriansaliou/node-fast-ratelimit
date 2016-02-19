@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/valeriansaliou/fast-ratelimit.svg?branch=master)](https://travis-ci.org/valeriansaliou/fast-ratelimit) [![](https://badge.fury.io/js/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit)
 
-Fast & efficient in-memory rate-limit, used to alleviate severe DOS attacks.
+Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or vanilla code.
 
@@ -29,8 +29,8 @@ The rate-limiter can be instanciated as such:
 var FastRateLimit = require("fast-ratelimit").FastRateLimit;
 
 var messageLimiter = new FastRateLimit({
-  threshold : 20 // available limit tokens on given ttl value.
-  ttl       : 60 // time-to-live value of limiter in seconds, resets every ttl seconds after first token request.
+  threshold : 20 // available tokens over timespan
+  ttl       : 60 // time-to-live value of token bucket (in seconds)
 });
 ```
 
