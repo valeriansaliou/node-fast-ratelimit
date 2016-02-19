@@ -26,19 +26,20 @@
     }
   ],
 
-  "main": "index.js",
+  "main": "lib/fast_ratelimit.js",
 
   "engines": {
     "node": ">= 0.8.0"
   },
 
   "scripts": {
-    "test": "npm install; echo 'TODO'"
+    "test": "check-build && mocha --reporter spec test/*-test.js"
   },
 
-  "dependencies": {},
-
-  "devDependencies": {},
+  "devDependencies": {
+    "check-build": "2.7.2",
+    "mocha": "2.4.5"
+  },
 
   "keywords": [
     "ratelimit",

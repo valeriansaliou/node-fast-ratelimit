@@ -1,13 +1,13 @@
 {
-  "curly": true,
-  "eqeqeq": true,
-  "immed": true,
-  "latedef": true,
-  "newcap": true,
-  "noarg": true,
-  "sub": true,
-  "undef": true,
-  "boss": true,
-  "eqnull": true,
-  "node": true
+  "camelcase": false,
+  "node": true,
+  "esnext" : true,
+  "predef": [
+    "require",
+    "define",
+    "escape",
+    "Buffer",
+    "console",
+    "module"
+  ]
 }
