@@ -6,4 +6,7 @@ before_install:
   - sudo apt-get update -q
   - sudo apt-get install g++-4.8 -y
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
-script: "npm run check && npm run test | ./node_modules/coveralls/bin/coveralls.js"
+script:
+  - npm test
+after_success:
+  - npm run coveralls

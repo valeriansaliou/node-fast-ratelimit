@@ -33,8 +33,8 @@
   },
 
   "scripts": {
-    "check": "check-build",
-    "test": "istanbul cover _mocha"
+    "test": "check-build && istanbul cover _mocha",
+    "coveralls": "istanbul cover _mocha --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
 
   "dependencies": {
@@ -45,6 +45,7 @@
   "devDependencies": {
     "check-build": "2.7.2",
     "mocha": "2.4.5",
+    "mocha-lcov-reporter": "1.1.0",
     "istanbul": "0.4.2",
     "coveralls": "2.11.6"
   },
