@@ -6,9 +6,13 @@ Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or vanilla code.
 
+Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on collecting lost references. The `hashtable` native module is used for that purpose.
+
 ## How to install?
 
 Include `rate-limit` in your `package.json` dependencies.
+
+**Note**: ensure you have a C++11 compiler available. This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
 
 ## How to use?
 
@@ -80,6 +84,10 @@ if (messageLimiter.consumeSync(namespace) === true) {
   // Silently discard message
 }
 ```
+
+## Notes on performance
+
+This module is used extensively on edge WebSocket servers, handling thousands of connections every second with multiple rate limit lists on the top of each other. Everything works smoothly, I/O doesn't block and RAM didn't move that much with the rate-limiting module enabled.
 
 ## Why not using existing similar modules?
 
