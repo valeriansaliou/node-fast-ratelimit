@@ -33,7 +33,8 @@
   },
 
   "scripts": {
-    "test": "check-build && mocha --reporter spec test/*-test.js"
+    "check": "check-build",
+    "test": "istanbul cover _mocha"
   },
 
   "dependencies": {
@@ -43,7 +44,9 @@
 
   "devDependencies": {
     "check-build": "2.7.2",
-    "mocha": "2.4.5"
+    "mocha": "2.4.5",
+    "istanbul": "0.4.2",
+    "coveralls": "2.11.6"
   },
 
   "keywords": [
