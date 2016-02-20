@@ -89,6 +89,8 @@ if (messageLimiter.consumeSync(namespace) === true) {
 
 This module is used extensively on edge WebSocket servers, handling thousands of connections every second with multiple rate limit lists on the top of each other. Everything works smoothly, I/O doesn't block and RAM didn't move that much with the rate-limiting module enabled.
 
+On one core / thread of 2.5 GHz Intel Core i7, the parallel asynchronous processing of 40,000 namespaces in the same limiter take an average of 300 ms, which is fine (7.5 microseconds per operation).
+
 ## Why not using existing similar modules?
 
 I was looking for an efficient, yet simple, DOS-prevention technique that wouldn't hurt performance and consume tons of memory. All proper modules I found were relying on Redis as the keystore for limits, which is definitely not great if you want to keep away from DOS attacks: using such a module under DOS conditions would subsequently DOS Redis since 1 (or more) Redis queries are made per limit check (1 attacker request = 1 limit check). Attacks should definitely not be allieviated this way, although a Redis-based solution would be perfect to limit abusing users.
