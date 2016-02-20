@@ -49,8 +49,6 @@ On the message send portion of our application code, we would add a call to the 
 
 #### 2.2. Use asynchronous API (Promise catch/reject)
 
-**To use the asynchronous API, you need to ensure your NodeJS version supports Promises** (we use some ECMAScript 6 syntax that are not backwards-compatible). You can still use the synchronous API if it doesn't (the asynchronous API will throw in this case).
-
 ```javascript
 // This would be dynamic in your application, based on user session data, or user IP
 namespace = "user_1";
