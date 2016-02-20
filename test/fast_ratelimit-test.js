@@ -20,6 +20,70 @@ var __Promise = (
 
 
 describe("fast-ratelimit", function() {
+  describe("constructor", function() {
+    it("should succeed creating a limiter with valid options", function() {
+      assert.doesNotThrow(
+        function() {
+          new FastRateLimit({
+            threshold : 5,
+            ttl       : 10
+          });
+        },
+
+        "FastRateLimit should not throw on valid options"
+      );
+    });
+
+    it("should fail creating a limiter with missing threshold", function() {
+      assert.throws(
+        function() {
+          new FastRateLimit({
+            ttl : 10
+          });
+        },
+
+        "FastRateLimit should throw on missing threshold"
+      );
+    });
+
+    it("should fail creating a limiter with invalid threshold", function() {
+      assert.throws(
+        function() {
+          new FastRateLimit({
+            threshold : -1,
+            ttl       : 10
+          });
+        },
+
+        "FastRateLimit should throw on invalid threshold"
+      );
+    });
+
+    it("should fail creating a limiter with missing ttl", function() {
+      assert.throws(
+        function() {
+          new FastRateLimit({
+            threshold : 2
+          });
+        },
+
+        "FastRateLimit should throw on missing ttl"
+      );
+    });
+
+    it("should fail creating a limiter with invalid ttl", function() {
+      assert.throws(
+        function() {
+          new FastRateLimit({
+            ttl : "120"
+          });
+        },
+
+        "FastRateLimit should throw on invalid ttl"
+      );
+    });
+  });
+
   describe("consumeSync method", function() {
     it("should not rate limit an empty namespace", function() {
       var limiter = new FastRateLimit({
