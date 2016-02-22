@@ -1,6 +1,6 @@
 # fast-ratelimit
 
-[![Build Status](https://img.shields.io/travis/valeriansaliou/fast-ratelimit/master.svg)](https://travis-ci.org/valeriansaliou/fast-ratelimit) [![Test Coverage](https://img.shields.io/coveralls/valeriansaliou/fast-ratelimit/master.svg)](https://coveralls.io/github/valeriansaliou/fast-ratelimit?branch=master) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit)
+[![Build Status](https://img.shields.io/travis/valeriansaliou/fast-ratelimit/master.svg)](https://travis-ci.org/valeriansaliou/fast-ratelimit) [![Test Coverage](https://img.shields.io/coveralls/valeriansaliou/fast-ratelimit/master.svg)](https://coveralls.io/github/valeriansaliou/fast-ratelimit?branch=master) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Gitter](https://img.shields.io/gitter/room/valeriansaliou/fast-ratelimit.svg)](https://gitter.im/valeriansaliou/fast-ratelimit)
 
 Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
