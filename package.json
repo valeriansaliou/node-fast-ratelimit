@@ -43,11 +43,11 @@
   },
 
   "devDependencies": {
-    "check-build": "2.7.2",
+    "check-build": "2.7.3",
     "mocha": "2.4.5",
     "mocha-lcov-reporter": "1.2.0",
-    "istanbul": "0.4.2",
-    "coveralls": "2.11.6"
+    "istanbul": "0.4.3",
+    "coveralls": "2.11.9"
   },
 
   "keywords": [
