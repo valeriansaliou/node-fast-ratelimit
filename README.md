@@ -4,7 +4,7 @@
 
 Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
-This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or vanilla code.
+This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or just vanilla code.
 
 Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on collecting lost references. The `hashtable` native module is used for that purpose.
 
