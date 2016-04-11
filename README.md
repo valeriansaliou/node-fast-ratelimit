@@ -78,7 +78,7 @@ if (messageLimiter.consumeSync(namespace) === true) {
   // Send message
   message.send();
 } else {
-  // consumeSync returned false since there's no more tokens available
+  // consumeSync returned false since there is no more tokens available
   // Silently discard message
 }
 ```
