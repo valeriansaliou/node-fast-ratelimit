@@ -1,6 +1,4 @@
 {
-  "esnext": false,
-
   "validateIndentation": 2,
   "disallowMixedSpacesAndTabs": true,
   "maximumLineLength": 80,
