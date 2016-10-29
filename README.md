@@ -21,6 +21,8 @@ Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on colle
 </tr>
 </table>
 
+_👋 You use fast-ratelimit and you want to be listed there? Contact me!_
+
 ## How to install?
 
 Include `rate-limit` in your `package.json` dependencies.

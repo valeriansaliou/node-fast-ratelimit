@@ -1,7 +1,7 @@
 {
   "name": "fast-ratelimit",
   "description": "Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "homepage": "https://github.com/valeriansaliou/fast-ratelimit",
 
   "author": {
@@ -43,11 +43,11 @@
   },
 
   "devDependencies": {
-    "check-build": "2.7.3",
-    "mocha": "2.4.5",
+    "check-build": "2.8.2",
+    "mocha": "3.1.2",
     "mocha-lcov-reporter": "1.2.0",
-    "istanbul": "0.4.3",
-    "coveralls": "2.11.9"
+    "istanbul": "0.4.5",
+    "coveralls": "2.11.14"
   },
 
   "keywords": [
