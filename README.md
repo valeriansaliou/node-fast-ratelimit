@@ -8,6 +8,19 @@ This rate-limiter was designed to be as generic as possible, usable in any NodeJ
 
 Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on collecting lost references. The `hashtable` native module is used for that purpose.
 
+## Who uses it?
+
+<table>
+<tr>
+<td align="center"><a href="http://crisp.im/"><img src="https://valeriansaliou.github.io/fast-ratelimit/images/crisp.png" height="64" /></a></td>
+<td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/fast-ratelimit/images/doctrine.png" height="64" /></a></td>
+</tr>
+<tr>
+<td align="center">Crisp</td>
+<td align="center">Doctrine</td>
+</tr>
+</table>
+
 ## How to install?
 
 Include `rate-limit` in your `package.json` dependencies.
