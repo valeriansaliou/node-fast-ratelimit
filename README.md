@@ -1,6 +1,6 @@
-# fast-ratelimit
+# node-fast-ratelimit
 
-[![Build Status](https://img.shields.io/travis/valeriansaliou/fast-ratelimit/master.svg)](https://travis-ci.org/valeriansaliou/fast-ratelimit) [![Test Coverage](https://img.shields.io/coveralls/valeriansaliou/fast-ratelimit/master.svg)](https://coveralls.io/github/valeriansaliou/fast-ratelimit?branch=master) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Gitter](https://img.shields.io/gitter/room/valeriansaliou/fast-ratelimit.svg)](https://gitter.im/valeriansaliou/fast-ratelimit)
+[![Build Status](https://img.shields.io/travis/valeriansaliou/node-fast-ratelimit/master.svg)](https://travis-ci.org/valeriansaliou/node-fast-ratelimit) [![Test Coverage](https://img.shields.io/coveralls/valeriansaliou/node-fast-ratelimit/master.svg)](https://coveralls.io/github/valeriansaliou/node-fast-ratelimit?branch=master) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Gitter](https://img.shields.io/gitter/room/valeriansaliou/node-fast-ratelimit.svg)](https://gitter.im/valeriansaliou/node-fast-ratelimit)
 
 Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
 
@@ -12,8 +12,8 @@ Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on colle
 
 <table>
 <tr>
-<td align="center"><a href="http://crisp.im/"><img src="https://valeriansaliou.github.io/fast-ratelimit/images/crisp.png" height="64" /></a></td>
-<td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/fast-ratelimit/images/doctrine.png" height="64" /></a></td>
+<td align="center"><a href="http://crisp.im/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/crisp.png" height="64" /></a></td>
+<td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/doctrine.png" height="64" /></a></td>
 </tr>
 <tr>
 <td align="center">Crisp</td>

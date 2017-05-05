@@ -1,8 +1,8 @@
 {
   "name": "fast-ratelimit",
-  "description": "Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.",
+  "description": "Fast and efficient in-memory rate-limit for Node, used to alleviate severe DOS attacks.",
   "version": "2.0.7",
-  "homepage": "https://github.com/valeriansaliou/fast-ratelimit",
+  "homepage": "https://github.com/valeriansaliou/node-fast-ratelimit",
   "license": "MIT",
 
   "author": {
@@ -13,17 +13,17 @@
 
   "repository": {
     "type": "git",
-    "url": "git://github.com/valeriansaliou/fast-ratelimit.git"
+    "url": "git://github.com/valeriansaliou/node-fast-ratelimit.git"
   },
 
   "bugs": {
-    "url": "https://github.com/valeriansaliou/fast-ratelimit/issues"
+    "url": "https://github.com/valeriansaliou/node-fast-ratelimit/issues"
   },
 
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/valeriansaliou/fast-ratelimit/blob/master/LICENSE"
+      "url": "https://github.com/valeriansaliou/node-fast-ratelimit/blob/master/LICENSE"
     }
   ],
 

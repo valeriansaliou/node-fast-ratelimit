@@ -1,5 +1,5 @@
 /*
- * fast-ratelimit
+ * node-fast-ratelimit
  *
  * Copyright 2016, Valerian Saliou
  * Author: Valerian Saliou <valerian@valeriansaliou.name>
@@ -19,7 +19,7 @@ var __Promise = (
 );
 
 
-describe("fast-ratelimit", function() {
+describe("node-fast-ratelimit", function() {
   describe("constructor", function() {
     it("should succeed creating a limiter with valid options", function() {
       assert.doesNotThrow(
