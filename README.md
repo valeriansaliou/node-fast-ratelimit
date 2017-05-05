@@ -21,7 +21,7 @@ Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on colle
 </tr>
 </table>
 
-_👋 You use fast-ratelimit and you want to be listed there? Contact me!_
+_👋 You use fast-ratelimit and you want to be listed there? [Contact me](https://valeriansaliou.name/)!_
 
 ## How to install?
 
