@@ -1,7 +1,7 @@
 {
   "name": "@anchorchat/fast-ratelimit",
   "description": "Fast and efficient in-memory rate-limit for Node, used to alleviate severe DOS attacks.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "homepage": "https://github.com/valeriansaliou/node-fast-ratelimit",
   "license": "MIT",
 
