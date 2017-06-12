@@ -39,7 +39,7 @@
   },
 
   "dependencies": {
-    "hashtable": "2.0.2",
+    "@anchorchat/hashtable": "2.0.3",
     "es6-promise-polyfill": "1.2.0"
   },
 
