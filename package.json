@@ -39,7 +39,7 @@
   },
 
   "dependencies": {
-    "@valerian.saliou/hashtable": "2.1.4",
+    "hashtable-patch-valeriansaliou": "2.1.5",
     "es6-promise-polyfill": "1.2.0"
   },
 
