@@ -27,9 +27,9 @@ _👋 You use fast-ratelimit and you want to be listed there? [Contact me](https
 
 ## How to install?
 
-Include `rate-limit` in your `package.json` dependencies.
+Include `fast-ratelimit` in your `package.json` dependencies.
 
-Alternatively, you can run `npm install rate-limit --save`.
+Alternatively, you can run `npm install fast-ratelimit --save`.
 
 **Note**: ensure you have a C++11 compiler available. This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
 
