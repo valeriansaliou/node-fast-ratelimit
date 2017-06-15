@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/valeriansaliou/node-fast-ratelimit/master.svg)](https://travis-ci.org/valeriansaliou/node-fast-ratelimit) [![Test Coverage](https://img.shields.io/coveralls/valeriansaliou/node-fast-ratelimit/master.svg)](https://coveralls.io/github/valeriansaliou/node-fast-ratelimit?branch=master) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Gitter](https://img.shields.io/gitter/room/valeriansaliou/node-fast-ratelimit.svg)](https://gitter.im/valeriansaliou/node-fast-ratelimit)
 
-Fast and efficient in-memory rate-limit, used to alleviate severe DOS attacks.
+Fast and efficient in-memory rate-limit, used to alleviate most common DOS attacks.
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of wheter you're using a framework or just vanilla code.
 
