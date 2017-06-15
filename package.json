@@ -1,7 +1,7 @@
 {
   "name": "fast-ratelimit",
   "description": "Fast and efficient in-memory rate-limit for Node, used to alleviate severe DOS attacks.",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "homepage": "https://github.com/valeriansaliou/node-fast-ratelimit",
   "license": "MIT",
 
@@ -39,7 +39,7 @@
   },
 
   "dependencies": {
-    "@valerian.saliou/hashtable": "2.1.1",
+    "@valerian.saliou/hashtable": "2.1.2",
     "es6-promise-polyfill": "1.2.0"
   },
 
