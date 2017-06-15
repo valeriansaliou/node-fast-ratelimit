@@ -14,10 +14,12 @@ Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on colle
 <tr>
 <td align="center"><a href="https://crisp.im/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/crisp.png" height="64" /></a></td>
 <td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/doctrine.png" height="64" /></a></td>
+<td align="center"><a href="https://anchor.chat/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/anchorchat.jpg" height="64" /></a></td>
 </tr>
 <tr>
 <td align="center">Crisp</td>
 <td align="center">Doctrine</td>
+<td align="center">Anchor.Chat</td>
 </tr>
 </table>
 
