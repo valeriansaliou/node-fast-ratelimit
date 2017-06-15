@@ -4,8 +4,11 @@ node_js:
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -q
-  - sudo apt-get install g++-4.8 -y
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+  - sudo apt-get install g++-4.9 -y
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
+before_script:
+  - gcc -v
+  - node -v
 script:
   - npm test
 after_success:
