@@ -31,7 +31,7 @@ Include `fast-ratelimit` in your `package.json` dependencies.
 
 Alternatively, you can run `npm install fast-ratelimit --save`.
 
-**Note**: ensure you have a C++11 compiler available. This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
+**Note**: ensure you have a C++11 compiler available (available in GCC 4.9+). This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
 
 ## How to use?
 
