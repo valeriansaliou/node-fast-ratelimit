@@ -278,7 +278,82 @@ describe("node-fast-ratelimit", function() {
         launchAsyncFlow(i);
       }
     });
+
+    
   });
+
+  describe("hasTokenSync method", function(){
+    it("should not consume token", function(){
+      var limiter = new FastRateLimit({
+        threshold : 1,
+        ttl       : 10
+      });
+      var namespace = "127.0.0.1";
+
+      assert.ok(limiter.hasTokenSync(namespace), "Limiter hasTokenSync should succeed at hasTokenSync #1");
+      assert.ok(limiter.hasTokenSync(namespace), "Limiter hasTokenSync should succeed at hasTokenSync #2");
+    });
+
+    it("should rate limit", function(){
+      var limiter = new FastRateLimit({
+        threshold : 1,
+        ttl       : 10
+      });
+      var namespace = "127.0.0.1";
+      
+      assert.ok(limiter.hasTokenSync(namespace), "Limiter hasTokenSync should succeed at hasTokenSync #1");
+      assert.ok(limiter.consumeSync(namespace), "Limiter consumeSync should succeed at consumeSync #1");
+      assert.ok(!limiter.hasTokenSync(namespace), "Limiter hasTokenSync should fail at hasTokenSync #2");
+    });
+  });
+    
+    describe("hasToken method", function(){
+      it("should not consume token", function(done){
+        var limiter = new FastRateLimit({
+          threshold : 1,
+          ttl       : 10
+        });
+        var namespace = "127.0.0.1";
+        var promises_all = [];
+
+        promises_all.push(limiter.hasToken(namespace));
+        promises_all.push(limiter.hasToken(namespace));
+
+        __Promise.all(promises_all).then(function(){
+          done();
+        }).catch(function(error) {
+          if(error){
+            done(error);
+          } else {
+            done(
+              new Error("Limiter hasToken should not fail at the end (reject)")
+            );
+          }
+        });
+      });
+
+      it("should rate limit", function(done) {
+        var limiter = new FastRateLimit({
+          threshold : 1,
+          ttl       : 10
+        });
+        var namespace = "127.0.0.1";
+        var promises_all = [];
+
+        promises_all.push(limiter.hasToken(namespace));
+        promises_all.push(limiter.consume(namespace));
+        promises_all.push(limiter.hasToken(namespace));
+
+        __Promise.all(promises_all).then(function(){
+          done(new Error("Limiter hasToken should not succeed at the end (reject)"));
+        }).catch(function(error) {
+          if(error){
+            done(error);
+          }
+          done();
+        });
+      });
+    });
 
   describe("consume method", function() {
     it("should not rate limit", function(done) {
