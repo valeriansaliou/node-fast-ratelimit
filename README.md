@@ -64,7 +64,7 @@ An user can send a maximum number of 20 messages in a 1 minute timespan, with a 
 
 The reset scheduling is done per-namespace; eg: if namespace `user_1` sends 1 message at 11:00:32am, he will have 19 messages remaining from 11:00:32am to 11:01:32am. Hence, his limiter will reset at 11:01:32am, and won't scheduler any more reset until he consumes another token.
 
-### 2. Allow/disallow request based on rate-limit
+### 2. Check by consuming a token
 
 On the message send portion of our application code, we would add a call to the ratelimiter instance.
 
@@ -132,7 +132,7 @@ limiter.hasToken(request.ip).then(() => {
   })
 ```
 
-#### 3.2. Check whether there are remaining tokens with synchronous API (Boolean test)
+#### 3.2. Check whether there are remaining tokens with synchronous API (boolean test)
 
 ```javascript
 if (!limiter.hasTokensSync(request.ip)) {
