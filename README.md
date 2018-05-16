@@ -68,7 +68,7 @@ The reset scheduling is done per-namespace; eg: if namespace `user_1` sends 1 me
 
 On the message send portion of our application code, we would add a call to the ratelimiter instance.
 
-#### 2.2. Use asynchronous API (Promise catch/reject)
+#### 2.1. Consume token with asynchronous API (Promise catch/reject)
 
 ```javascript
 // This would be dynamic in your application, based on user session data, or user IP
@@ -87,7 +87,7 @@ messageLimiter.consume(namespace)
   });
 ```
 
-#### 2.1. Use synchronous API (boolean test)
+#### 2.2. Consume token with synchronous API (boolean test)
 
 ```javascript
 // This would be dynamic in your application, based on user session data, or user IP
@@ -103,6 +103,41 @@ if (messageLimiter.consumeSync(namespace) === true) {
   // Silently discard message
 }
 ```
+
+### 3. Check without consuming a token
+In some instances, like password brute forcing prevention, you may want to just check without consuming a token and consume only when password validation fails.
+
+#### 3.1. Check whether there are remaining tokens with asynchronous API (Promise catch/reject)
+
+```javascript
+limiter.hasToken(request.ip).then(() => {
+  return authenticate(request.login, request.password)
+}).then(() => {
+  //User is authenticated  
+}, () => {
+  //User is not authenticated
+  //Consume a token and reject promise
+  return limiter.consume(request.ip).then(() => Promise.reject())
+})
+.catch(()=> {
+  //Either invalid authentication or too many invalid login
+  return response.unauthorized()
+})
+```
+
+#### 3.2. Check whether there are remaining tokens with synchronous API (Boolean test)
+
+```javascript
+if( !limiter.hasTokensSync(request.ip)){
+  throw new Error('Too many invalid login')
+}
+const authenticated = authenticateSync(request.login, request.password)
+if (!authenticated) {
+  limiter.consumeSync(request.ip)
+  throw new Error('Invalid login/password')
+}
+```
+
 
 ## Notes on performance
 
