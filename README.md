@@ -105,39 +105,48 @@ if (messageLimiter.consumeSync(namespace) === true) {
 ```
 
 ### 3. Check without consuming a token
-In some instances, like password brute forcing prevention, you may want to just check without consuming a token and consume only when password validation fails.
+
+In some instances, like password brute forcing prevention, you may want to check without consuming a token and consume only when password validation fails.
 
 #### 3.1. Check whether there are remaining tokens with asynchronous API (Promise catch/reject)
 
 ```javascript
 limiter.hasToken(request.ip).then(() => {
   return authenticate(request.login, request.password)
-}).then(() => {
-  //User is authenticated  
-}, () => {
-  //User is not authenticated
-  //Consume a token and reject promise
-  return limiter.consume(request.ip).then(() => Promise.reject())
 })
-.catch(()=> {
-  //Either invalid authentication or too many invalid login
-  return response.unauthorized()
-})
+  .then(
+    () => {
+      // User is authenticated
+    },
+
+    () => {
+      // User is not authenticated
+      // Consume a token and reject promise
+      return limiter.consume(request.ip)
+        .then(() => Promise.reject())
+    }
+  )
+  .catch(() => {
+    // Either invalid authentication or too many invalid login
+    return response.unauthorized();
+  })
 ```
 
 #### 3.2. Check whether there are remaining tokens with synchronous API (Boolean test)
 
 ```javascript
-if( !limiter.hasTokensSync(request.ip)){
-  throw new Error('Too many invalid login')
+if (!limiter.hasTokensSync(request.ip)) {
+  throw new Error("Too many invalid login");
 }
-const authenticated = authenticateSync(request.login, request.password)
-if (!authenticated) {
-  limiter.consumeSync(request.ip)
-  throw new Error('Invalid login/password')
+
+const is_authenticated = authenticateSync(request.login, request.password);
+
+if (!is_authenticated) {
+  limiter.consumeSync(request.ip);
+
+  throw new Error("Invalid login/password");
 }
 ```
-
 
 ## Notes on performance
 
