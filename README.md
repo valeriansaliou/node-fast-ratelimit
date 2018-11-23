@@ -8,6 +8,8 @@ This rate-limiter was designed to be as generic as possible, usable in any NodeJ
 
 Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on collecting lost references. The `hashtable` native module is used for that purpose.
 
+**🇫🇷 Crafted in Lannion, France.**
+
 ## Who uses it?
 
 <table>
