@@ -33,6 +33,8 @@ Include `fast-ratelimit` in your `package.json` dependencies.
 
 Alternatively, you can run `npm install fast-ratelimit --save`.
 
+TypeScript users can install type definitions by running `npm install --save-dev @types/fast-ratelimit`
+
 **Compilation note**: ensure you have a C++11 compiler available (available in GCC 4.9+). This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
 
 **Windows users:** you may have to install `windows-build-tools` globally using: `npm install -g windows-build-tools` to be able to compile.
