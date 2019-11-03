@@ -137,7 +137,7 @@ limiter.hasToken(request.ip).then(() => {
 #### 3.2. Check whether there are remaining tokens with synchronous API (boolean test)
 
 ```javascript
-if (!limiter.hasTokensSync(request.ip)) {
+if (!limiter.hasTokenSync(request.ip)) {
   throw new Error("Too many invalid login");
 }
 
