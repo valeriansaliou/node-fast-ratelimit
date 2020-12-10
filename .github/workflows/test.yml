@@ -1,0 +1,47 @@
+on: [push, pull_request]
+
+name: Test and Build
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [6.x, 8.x, 10.x, 12.x, 14.x]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install NodeJS
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install build dependencies
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+          sudo apt-get update -q
+          sudo apt-get install g++-4.9 -y
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
+
+      - name: Verify versions
+        run: gcc -v && node --version && npm --version && node -p process.versions.v8
+
+      - name: Cache build artifacts
+        id: cache-node
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
