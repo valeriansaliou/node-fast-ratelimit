@@ -14,10 +14,10 @@ Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on colle
 
 <table>
 <tr>
-<td align="center"><a href="https://crisp.chat/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/crisp.png" height="64" /></a></td>
-<td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/doctrine.png" height="64" /></a></td>
-<td align="center"><a href="https://anchor.chat/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/anchorchat.jpg" height="64" /></a></td>
-<td align="center"><a href="https://westudents.it/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/westudents.png" height="64" /></a></td>
+<td align="center"><a href="https://crisp.chat/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/crisp.png" width="64" /></a></td>
+<td align="center"><a href="https://www.doctrine.fr/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/doctrine.png" width="64" /></a></td>
+<td align="center"><a href="https://anchor.chat/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/anchorchat.jpg" width="64" /></a></td>
+<td align="center"><a href="https://westudents.it/"><img src="https://valeriansaliou.github.io/node-fast-ratelimit/images/westudents.png" width="64" /></a></td>
 </tr>
 <tr>
 <td align="center">Crisp</td>
