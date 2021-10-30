@@ -246,8 +246,8 @@ describe("node-fast-ratelimit", function() {
     });
 
     it("should not block writing random namespaces", function(done) {
-      // Timeout if longer than 2 seconds (check for blocking writes)
-      this.timeout(2000);
+      // Timeout if longer than 1 second (check for blocking writes)
+      this.timeout(1000);
 
       var limiter = new FastRateLimit({
         threshold : 100,
