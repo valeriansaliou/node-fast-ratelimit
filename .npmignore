@@ -4,3 +4,4 @@ coverage/
 .jshintrc
 .jscsrc
 .checkbuild
+package-lock.json

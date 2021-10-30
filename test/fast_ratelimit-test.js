@@ -257,7 +257,7 @@ describe("node-fast-ratelimit", function() {
       });
 
       var asyncFlowSteps = 10000,
-          asyncFlowTotal = 4,
+          asyncFlowTotal = 10,
           asyncFlowCountDone = 0;
 
       var launchAsyncFlow = function(id) {

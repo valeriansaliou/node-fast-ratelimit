@@ -2,7 +2,7 @@
 
 [![Test and Build](https://github.com/valeriansaliou/node-fast-ratelimit/workflows/Test%20and%20Build/badge.svg?branch=master)](https://github.com/valeriansaliou/node-fast-ratelimit/actions?query=workflow%3A%22Test+and+Build%22) [![NPM](https://img.shields.io/npm/v/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Downloads](https://img.shields.io/npm/dt/fast-ratelimit.svg)](https://www.npmjs.com/package/fast-ratelimit) [![Gitter](https://img.shields.io/gitter/room/valeriansaliou/node-fast-ratelimit.svg)](https://gitter.im/valeriansaliou/node-fast-ratelimit) [![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/valeriansaliou)
 
-Fast and efficient in-memory rate-limit, used to alleviate most common DOS attacks.
+Fast and efficient in-memory rate-limit, used to alleviate most common DOS attacks. Zero dependencies.
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of whether you're using a framework or just vanilla code.
 
@@ -150,7 +150,7 @@ if (!is_authenticated) {
 
 This module is used extensively on edge WebSocket servers, handling thousands of connections every second with multiple rate limit lists on the top of each other. Everything works smoothly, I/O doesn't block and RAM didn't move that much with the rate-limiting module enabled.
 
-On one core / thread of 2.5 GHz Intel Core i7, the parallel asynchronous processing of 40,000 namespaces in the same limiter take an average of 300 ms, which is fine (7.5 microseconds per operation).
+On one core of a 2,3 GHz 8-Core Intel Core i9, the parallel asynchronous processing of 100,000 namespaces in the same limiter take an average of 160 ms, which is fine (1.6 microseconds per operation).
 
 ## Why not using existing similar modules?
 
