@@ -33,6 +33,8 @@ Include `fast-ratelimit` in your `package.json` dependencies.
 
 Alternatively, you can run `npm install fast-ratelimit --save`.
 
+TypeScript users can install type definitions by running `npm install --save-dev @types/fast-ratelimit`. _Note that this is a third-party package, ie. not maintained by myself._
+
 ## How to use?
 
 The `fast-ratelimit` API is pretty simple, here are some keywords used in the docs:
