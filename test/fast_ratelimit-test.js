@@ -209,6 +209,7 @@ describe("node-fast-ratelimit", function() {
 
     it("should expire token according to TTL", function(done) {
       // Do not consider timeout as slow
+      this.timeout(2000);
       this.slow(5000);
 
       var options = {
@@ -248,6 +249,7 @@ describe("node-fast-ratelimit", function() {
     it("should not block writing random namespaces", function(done) {
       // Timeout if longer than 1 second (check for blocking writes)
       this.timeout(1000);
+      this.slow(250);
 
       var limiter = new FastRateLimit({
         threshold : 100,
