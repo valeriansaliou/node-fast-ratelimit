@@ -24,14 +24,10 @@
   ],
   "main": "lib/fast_ratelimit",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 6.0.0"
   },
   "scripts": {
     "test": "check-build && istanbul cover _mocha"
-  },
-  "dependencies": {
-    "hashtable-patch-valeriansaliou": "2.1.5",
-    "es6-promise-polyfill": "1.2.0"
   },
   "devDependencies": {
     "check-build": "2.8.2",

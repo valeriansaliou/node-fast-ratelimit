@@ -6,8 +6,6 @@ Fast and efficient in-memory rate-limit, used to alleviate most common DOS attac
 
 This rate-limiter was designed to be as generic as possible, usable in any NodeJS project environment, regardless of whether you're using a framework or just vanilla code.
 
-Rate-limit lists are stored in a native hashtable to avoid V8 GC to hip on collecting lost references. The `hashtable` native module is used for that purpose.
-
 **🇫🇷 Crafted in Lannion, France.**
 
 ## Who uses it?
@@ -34,10 +32,6 @@ _👋 You use fast-ratelimit and you want to be listed there? [Contact me](https
 Include `fast-ratelimit` in your `package.json` dependencies.
 
 Alternatively, you can run `npm install fast-ratelimit --save`.
-
-**Compilation note**: ensure you have a C++11 compiler available (available in GCC 4.9+). This allows for node-gyp to build the `hashtable` dependency that `fast-ratelimit` depends on.
-
-**Windows users:** you may have to install `windows-build-tools` globally using: `npm install -g windows-build-tools` to be able to compile.
 
 ## How to use?
 
