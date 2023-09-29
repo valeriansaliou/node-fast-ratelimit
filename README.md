@@ -151,7 +151,7 @@ if (!is_authenticated) {
 ### 4. Check bucket status
 ```javascript
 
-limiter.checkBucket(request.ip).then((stats) => {
+limiter.bucketCheck(request.ip).then((stats) => {
   // Bucket is valid
     console.log(stats.timeRemaining) // Time remaining on the bucket
     console.log(stats.tokens)        // Tokens remaining in the bucket
