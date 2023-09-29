@@ -20,97 +20,97 @@ var __Promise = (
 
 
 describe("node-fast-ratelimit", function() {
-  describe("constructor", function() {
-    it("should succeed creating a limiter with valid options", function() {
+  describe("constructor", function () {
+    it("should succeed creating a limiter with valid options", function () {
       assert.doesNotThrow(
-        function() {
-          new FastRateLimit({
-            threshold : 5,
-            ttl       : 10
-          });
-        },
+          function () {
+            new FastRateLimit({
+              threshold: 5,
+              ttl: 10
+            });
+          },
 
-        "FastRateLimit should not throw on valid options"
+          "FastRateLimit should not throw on valid options"
       );
     });
 
-    it("should fail creating a limiter with missing threshold", function() {
+    it("should fail creating a limiter with missing threshold", function () {
       assert.throws(
-        function() {
-          new FastRateLimit({
-            ttl : 10
-          });
-        },
+          function () {
+            new FastRateLimit({
+              ttl: 10
+            });
+          },
 
-        "FastRateLimit should throw on missing threshold"
+          "FastRateLimit should throw on missing threshold"
       );
     });
 
-    it("should fail creating a limiter with invalid threshold", function() {
+    it("should fail creating a limiter with invalid threshold", function () {
       assert.throws(
-        function() {
-          new FastRateLimit({
-            threshold : -1,
-            ttl       : 10
-          });
-        },
+          function () {
+            new FastRateLimit({
+              threshold: -1,
+              ttl: 10
+            });
+          },
 
-        "FastRateLimit should throw on invalid threshold"
+          "FastRateLimit should throw on invalid threshold"
       );
     });
 
-    it("should fail creating a limiter with missing ttl", function() {
+    it("should fail creating a limiter with missing ttl", function () {
       assert.throws(
-        function() {
-          new FastRateLimit({
-            threshold : 2
-          });
-        },
+          function () {
+            new FastRateLimit({
+              threshold: 2
+            });
+          },
 
-        "FastRateLimit should throw on missing ttl"
+          "FastRateLimit should throw on missing ttl"
       );
     });
 
-    it("should fail creating a limiter with invalid ttl", function() {
+    it("should fail creating a limiter with invalid ttl", function () {
       assert.throws(
-        function() {
-          new FastRateLimit({
-            ttl : "120"
-          });
-        },
+          function () {
+            new FastRateLimit({
+              ttl: "120"
+            });
+          },
 
-        "FastRateLimit should throw on invalid ttl"
+          "FastRateLimit should throw on invalid ttl"
       );
     });
   });
 
-  describe("consumeSync method", function() {
-    it("should not rate limit an empty namespace", function() {
+  describe("consumeSync method", function () {
+    it("should not rate limit an empty namespace", function () {
       var limiter = new FastRateLimit({
-        threshold : 100,
-        ttl       : 10
+        threshold: 100,
+        ttl: 10
       });
 
       assert.ok(
-        limiter.consumeSync(null),
-        "Limiter consume should succeed for `null` (null) namespace (resolve)"
+          limiter.consumeSync(null),
+          "Limiter consume should succeed for `null` (null) namespace (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync(""),
-        "Limiter consume should succeed for `` (blank) namespace (resolve)"
+          limiter.consumeSync(""),
+          "Limiter consume should succeed for `` (blank) namespace (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync(0),
-        "Limiter consume should succeed for `0` (number) namespace (resolve)"
+          limiter.consumeSync(0),
+          "Limiter consume should succeed for `0` (number) namespace (resolve)"
       );
     });
 
-    it("should not rate limit a single namespace", function() {
+    it("should not rate limit a single namespace", function () {
       var options = {
-        threshold : 100,
-        ttl       : 10
+        threshold: 100,
+        ttl: 10
       };
 
       var namespace = "127.0.0.1";
@@ -118,154 +118,154 @@ describe("node-fast-ratelimit", function() {
 
       for (var i = 1; i <= options.threshold; i++) {
         assert.ok(
-          limiter.consumeSync(namespace),
-          "Limiter consume should succeed"
+            limiter.consumeSync(namespace),
+            "Limiter consume should succeed"
         );
       }
     });
 
-    it("should rate limit a single namespace", function() {
+    it("should rate limit a single namespace", function () {
       var namespace = "127.0.0.1";
 
       var limiter = new FastRateLimit({
-        threshold : 3,
-        ttl       : 10
+        threshold: 3,
+        ttl: 10
       });
 
       assert.ok(
-        limiter.consumeSync(namespace),
-        "Limiter consume succeed at consume #1 (resolve)"
+          limiter.consumeSync(namespace),
+          "Limiter consume succeed at consume #1 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync(namespace),
-        "Limiter consume succeed at consume #2 (resolve)"
+          limiter.consumeSync(namespace),
+          "Limiter consume succeed at consume #2 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync(namespace),
-        "Limiter consume succeed at consume #3 (resolve)"
+          limiter.consumeSync(namespace),
+          "Limiter consume succeed at consume #3 (resolve)"
       );
 
       assert.ok(
-        !(limiter.consumeSync(namespace)),
-        "Limiter consume fail at consume #4 (reject)"
+          !(limiter.consumeSync(namespace)),
+          "Limiter consume fail at consume #4 (reject)"
       );
     });
 
-    it("should not rate limit multiple namespaces", function() {
+    it("should not rate limit multiple namespaces", function () {
       var limiter = new FastRateLimit({
-        threshold : 2,
-        ttl       : 10
+        threshold: 2,
+        ttl: 10
       });
 
       assert.ok(
-        limiter.consumeSync("user_1"),
-        "Limiter consume should succeed at consume #1 of user_1 (resolve)"
+          limiter.consumeSync("user_1"),
+          "Limiter consume should succeed at consume #1 of user_1 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync("user_2"),
-        "Limiter consume should succeed at consume #1 of user_2 (resolve)"
+          limiter.consumeSync("user_2"),
+          "Limiter consume should succeed at consume #1 of user_2 (resolve)"
       );
     });
 
-    it("should rate limit multiple namespaces", function() {
+    it("should rate limit multiple namespaces", function () {
       var limiter = new FastRateLimit({
-        threshold : 2,
-        ttl       : 10
+        threshold: 2,
+        ttl: 10
       });
 
       assert.ok(
-        limiter.consumeSync("user_1"),
-        "Limiter consume should succeed at consume #1 of user_1 (resolve)"
+          limiter.consumeSync("user_1"),
+          "Limiter consume should succeed at consume #1 of user_1 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync("user_2"),
-        "Limiter consume should succeed at consume #1 of user_2 (resolve)"
+          limiter.consumeSync("user_2"),
+          "Limiter consume should succeed at consume #1 of user_2 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync("user_1"),
-        "Limiter consume should succeed at consume #2 of user_1 (resolve)"
+          limiter.consumeSync("user_1"),
+          "Limiter consume should succeed at consume #2 of user_1 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync("user_2"),
-        "Limiter consume should succeed at consume #2 of user_2 (resolve)"
+          limiter.consumeSync("user_2"),
+          "Limiter consume should succeed at consume #2 of user_2 (resolve)"
       );
 
       assert.ok(
-        !(limiter.consumeSync("user_1")),
-        "Limiter consume should fail at consume #3 of user_1 (reject)"
+          !(limiter.consumeSync("user_1")),
+          "Limiter consume should fail at consume #3 of user_1 (reject)"
       );
 
       assert.ok(
-        !(limiter.consumeSync("user_2")),
-        "Limiter consume should fail at consume #3 of user_2 (reject)"
+          !(limiter.consumeSync("user_2")),
+          "Limiter consume should fail at consume #3 of user_2 (reject)"
       );
     });
 
-    it("should expire token according to TTL", function(done) {
+    it("should expire token according to TTL", function (done) {
       // Do not consider timeout as slow
       this.timeout(2000);
       this.slow(5000);
 
       var options = {
-        threshold : 2,
-        ttl       : 1
+        threshold: 2,
+        ttl: 1
       };
 
       var namespace = "127.0.0.1";
       var limiter = new FastRateLimit(options);
 
       assert.ok(
-        limiter.consumeSync(namespace),
-        "Limiter consume should succeed at consume #1 (resolve)"
+          limiter.consumeSync(namespace),
+          "Limiter consume should succeed at consume #1 (resolve)"
       );
 
       assert.ok(
-        limiter.consumeSync(namespace),
-        "Limiter consume should succeed at consume #2 (resolve)"
+          limiter.consumeSync(namespace),
+          "Limiter consume should succeed at consume #2 (resolve)"
       );
 
       assert.ok(
-        !(limiter.consumeSync(namespace)),
-        "Limiter consume should fail at consume #3 (reject)"
+          !(limiter.consumeSync(namespace)),
+          "Limiter consume should fail at consume #3 (reject)"
       );
 
       // Wait for TTL reset.
-      setTimeout(function() {
+      setTimeout(function () {
         assert.ok(
-          limiter.consumeSync(namespace),
-          "Limiter consume should succeed at consume #4 (resolve)"
+            limiter.consumeSync(namespace),
+            "Limiter consume should succeed at consume #4 (resolve)"
         );
 
         done();
       }, ((options.ttl * 1000) + 100));
     });
 
-    it("should not block writing random namespaces", function(done) {
+    it("should not block writing random namespaces", function (done) {
       // Timeout if longer than 1 second (check for blocking writes)
       this.timeout(1000);
       this.slow(250);
 
       var limiter = new FastRateLimit({
-        threshold : 100,
-        ttl       : 60
+        threshold: 100,
+        ttl: 60
       });
 
       var asyncFlowSteps = 10000,
           asyncFlowTotal = 10,
           asyncFlowCountDone = 0;
 
-      var launchAsyncFlow = function(id) {
-        setTimeout(function() {
+      var launchAsyncFlow = function (id) {
+        setTimeout(function () {
           for (var i = 0; i < asyncFlowSteps; i++) {
             assert.ok(
-              limiter.consumeSync("flow-" + id + "-" + i),
-              "Limiter consume should succeed at flow #" + id + " (resolve)"
+                limiter.consumeSync("flow-" + id + "-" + i),
+                "Limiter consume should succeed at flow #" + id + " (resolve)"
             );
           }
 
@@ -273,7 +273,7 @@ describe("node-fast-ratelimit", function() {
             done();
           }
         });
-      }
+      };
 
       // Launch asynchronous flows
       for (var i = 1; i <= asyncFlowTotal; i++) {
@@ -284,11 +284,11 @@ describe("node-fast-ratelimit", function() {
 
   });
 
-  describe("hasTokenSync method", function() {
-    it("should not consume token", function() {
+  describe("hasTokenSync method", function () {
+    it("should not consume token", function () {
       var limiter = new FastRateLimit({
-        threshold : 1,
-        ttl       : 10
+        threshold: 1,
+        ttl: 10
       });
       var namespace = "127.0.0.1";
 
@@ -296,10 +296,10 @@ describe("node-fast-ratelimit", function() {
       assert.ok(limiter.hasTokenSync(namespace), "Limiter hasTokenSync should succeed at hasTokenSync #2");
     });
 
-    it("should rate limit", function() {
+    it("should rate limit", function () {
       var limiter = new FastRateLimit({
-        threshold : 1,
-        ttl       : 10
+        threshold: 1,
+        ttl: 10
       });
       var namespace = "127.0.0.1";
 
@@ -309,11 +309,11 @@ describe("node-fast-ratelimit", function() {
     });
   });
 
-  describe("hasToken method", function() {
-    it("should not consume token", function(done) {
+  describe("hasToken method", function () {
+    it("should not consume token", function (done) {
       var limiter = new FastRateLimit({
-        threshold : 1,
-        ttl       : 10
+        threshold: 1,
+        ttl: 10
       });
       var namespace = "127.0.0.1";
       var promises_all = [];
@@ -322,24 +322,24 @@ describe("node-fast-ratelimit", function() {
       promises_all.push(limiter.hasToken(namespace));
 
       __Promise.all(promises_all)
-        .then(function() {
-          done();
-        })
-        .catch(function(error) {
-          if (error) {
-            done(error);
-          } else {
-            done(
-              new Error("Limiter hasToken should not fail at the end (reject)")
-            );
-          }
-        });
+          .then(function () {
+            done();
+          })
+          .catch(function (error) {
+            if (error) {
+              done(error);
+            } else {
+              done(
+                  new Error("Limiter hasToken should not fail at the end (reject)")
+              );
+            }
+          });
     });
 
-    it("should rate limit", function(done) {
+    it("should rate limit", function (done) {
       var limiter = new FastRateLimit({
-        threshold : 1,
-        ttl       : 10
+        threshold: 1,
+        ttl: 10
       });
       var namespace = "127.0.0.1";
       var promises_all = [];
@@ -349,24 +349,24 @@ describe("node-fast-ratelimit", function() {
       promises_all.push(limiter.hasToken(namespace));
 
       __Promise.all(promises_all)
-        .then(function() {
-          done(new Error("Limiter hasToken should not succeed at the end (reject)"));
-        })
-        .catch(function(error) {
-          if (error) {
-            done(error);
-          }
+          .then(function () {
+            done(new Error("Limiter hasToken should not succeed at the end (reject)"));
+          })
+          .catch(function (error) {
+            if (error) {
+              done(error);
+            }
 
-          done();
-        });
+            done();
+          });
     });
   });
 
-  describe("consume method", function() {
-    it("should not rate limit", function(done) {
+  describe("consume method", function () {
+    it("should not rate limit", function (done) {
       var options = {
-        threshold : 100,
-        ttl       : 10
+        threshold: 100,
+        ttl: 10
       };
 
       var namespace = "127.0.0.1";
@@ -376,29 +376,29 @@ describe("node-fast-ratelimit", function() {
 
       for (var i = 1; i <= options.threshold; i++) {
         promises_all.push(
-          limiter.consume(namespace)
+            limiter.consume(namespace)
         );
       }
 
       __Promise.all(promises_all)
-        .then(function() {
-          done();
-        })
-        .catch(function(error) {
-          if (error) {
-            done(error);
-          } else {
-            done(
-              new Error("Limiter consume should not fail at the end (reject)")
-            );
-          }
-        });
+          .then(function () {
+            done();
+          })
+          .catch(function (error) {
+            if (error) {
+              done(error);
+            } else {
+              done(
+                  new Error("Limiter consume should not fail at the end (reject)")
+              );
+            }
+          });
     });
 
-    it("should rate limit", function(done) {
+    it("should rate limit", function (done) {
       var options = {
-        threshold : 100,
-        ttl       : 10
+        threshold: 100,
+        ttl: 10
       };
 
       var namespace = "127.0.0.1";
@@ -408,23 +408,82 @@ describe("node-fast-ratelimit", function() {
 
       for (var i = 1; i <= (options.threshold + 5); i++) {
         promises_all.push(
-          limiter.consume(namespace)
+            limiter.consume(namespace)
         );
       }
 
       __Promise.all(promises_all)
-        .then(function(remaining_tokens_list) {
-          done(
-            new Error("Limiter consume should not succeed at the end (reject)")
+          .then(function (remaining_tokens_list) {
+            done(
+                new Error("Limiter consume should not succeed at the end (reject)")
+            );
+          })
+          .catch(function (error) {
+            if (error) {
+              done(error);
+            } else {
+              done();
+            }
+          });
+    });
+  });
+
+  describe("bucketCheck method", function () {
+    it("should return a pair of stats for the current bucket", function () {
+      var limiter = new FastRateLimit({
+        threshold: 5,
+        ttl: 10
+      });
+
+      var namespace = "127.0.0.1";
+      var promises_all = [];
+
+      promises_all.push(limiter.bucketCheck(namespace));
+
+      __Promise.all(promises_all).then(function (result) {
+
+          assert.ok(
+            result.timeRemaining !== undefined && result.tokens !== undefined,
+            "Limiter bucketCheck should return a pair of defined stats"
           );
-        })
-        .catch(function(error) {
-          if (error) {
-            done(error);
-          } else {
+
+          assert.ok(
+            result.timeRemaining > 0 && result.timeRemaining <= 10,
+            "Limiter bucketCheck should return a valid timeRemaining | Returned: " + result.timeRemaining
+          );
+
+          assert.ok(
+            result.tokens > 0 && result.tokens <= 5,
+            "Limiter bucketCheck should return a valid tokens | Returned: " + result.tokens
+          );
+
+      });
+    });
+
+    it("should not consume token", function (done) {
+      var limiter = new FastRateLimit({
+        threshold: 1,
+        ttl: 10
+      });
+      var namespace = "127.0.0.1";
+      var promises_all = [];
+
+      promises_all.push(limiter.hasToken(namespace));
+      promises_all.push(limiter.hasToken(namespace));
+
+      __Promise.all(promises_all)
+          .then(function () {
             done();
-          }
-        });
+          })
+          .catch(function (error) {
+            if (error) {
+              done(error);
+            } else {
+              done(
+                  new Error("Limiter hasToken should not fail at the end (reject)")
+              );
+            }
+          });
     });
   });
 });
