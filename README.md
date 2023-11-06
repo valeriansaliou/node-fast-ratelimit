@@ -148,6 +148,19 @@ if (!is_authenticated) {
 }
 ```
 
+### 4. Check bucket status
+```javascript
+
+limiter.bucketCheck(request.ip).then((stats) => {
+  // Bucket is valid
+    console.log(stats.timeRemaining) // Time remaining on the bucket
+    console.log(stats.tokens)        // Tokens remaining in the bucket
+})
+  .catch(() => {
+    // Bucket is invalid
+  })
+```
+
 ## Notes on performance
 
 This module is used extensively on edge WebSocket servers, handling thousands of connections every second with multiple rate limit lists on the top of each other. Everything works smoothly, I/O doesn't block and RAM didn't move that much with the rate-limiting module enabled.
