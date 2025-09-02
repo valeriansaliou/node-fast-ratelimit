@@ -9,7 +9,8 @@
 "use strict";
 
 
-var FastRateLimit = require("../").FastRateLimit;
+var FastRateLimit = require("../dist/fast_ratelimit").FastRateLimit;
+
 var assert = require("assert");
 
 
