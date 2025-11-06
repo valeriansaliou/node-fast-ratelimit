@@ -23,6 +23,7 @@
     }
   ],
   "main": "lib/fast_ratelimit",
+  "types": "types/fast_ratelimit.d.ts",
   "engines": {
     "node": ">= 10.0.0"
   },

@@ -33,7 +33,7 @@ Include `fast-ratelimit` in your `package.json` dependencies.
 
 Alternatively, you can run `npm install fast-ratelimit --save`.
 
-TypeScript users can install type definitions by running `npm install --save-dev @types/fast-ratelimit`. _Note that this is a third-party package, ie. not maintained by myself._
+If you are using TypeScript, type definitions are automatically imported.
 
 ## How to use?
 
@@ -75,6 +75,7 @@ On the message send portion of our application code, we would add a call to the 
 namespace = "user_1";
 
 // Check if user is allowed to send message
+// You can also use 'consumeCount()' for its variant returning remaining tokens
 messageLimiter.consume(namespace)
   .then(() => {
     // Consumed a token
@@ -104,6 +105,26 @@ if (messageLimiter.consumeSync(namespace) === true) {
 }
 ```
 
+#### 2.3. Consume token with synchronous API (count remaining)
+
+```javascript
+// This would be dynamic in your application, based on user session data, or user IP
+namespace = "user_1";
+
+// Check if user is allowed to send message (count remaining tokens)
+// When the remaining count is zero, it means we just consumed the last token
+var countRemaining = messageLimiter.consumeCountSync(namespace);
+
+if (countRemaining >= 0) {
+  // Consumed a token
+  // Send message
+  message.send();
+} else {
+  // consumeCountSync returned -1 since there is no more tokens available
+  // Silently discard message
+}
+```
+
 ### 3. Check without consuming a token
 
 In some instances, like password brute forcing prevention, you may want to check without consuming a token and consume only when password validation fails.
@@ -122,6 +143,7 @@ limiter.hasToken(request.ip).then(() => {
     () => {
       // User is not authenticated
       // Consume a token and reject promise
+      // You can also use 'consumeCount()' for its variant returning remaining tokens
       return limiter.consume(request.ip)
         .then(() => Promise.reject())
     }

@@ -284,6 +284,64 @@ describe("node-fast-ratelimit", function() {
 
   });
 
+  describe("consumeCountSync method", function() {
+    it("should not rate limit an empty namespace", function() {
+      var limiter = new FastRateLimit({
+        threshold : 100,
+        ttl       : 10
+      });
+
+      assert.strictEqual(
+        limiter.consumeCountSync(null),
+        1,
+        "Limiter consume should return 1 for `null` (null) namespace (resolve)"
+      );
+
+      assert.strictEqual(
+        limiter.consumeCountSync(""),
+        1,
+        "Limiter consume should return 1 for `` (blank) namespace (resolve)"
+      );
+
+      assert.strictEqual(
+        limiter.consumeCountSync(0),
+        1,
+        "Limiter consume should return 1 for `0` (number) namespace (resolve)"
+      );
+    });
+
+    it("should not rate limit a single namespace", function() {
+      var options = {
+        threshold : 100,
+        ttl       : 10
+      };
+
+      var namespace = "127.0.0.1";
+      var limiter = new FastRateLimit(options);
+
+      for (var i = 1; i <= options.threshold; i++) {
+        var remainingCount = (options.threshold - i);
+
+        assert.strictEqual(
+          limiter.consumeCountSync(namespace),
+          remainingCount,
+          ("Limiter consume should return " + remainingCount)
+        );
+      }
+
+      // Confirm that bucket is now empty (and stays as such!)
+      var emptyCountSteps = 3;
+
+      for (var j = 1; j <= emptyCountSteps; j++) {
+        assert.strictEqual(
+          limiter.consumeCountSync(namespace),
+          -1,
+          ("Limiter consume should return -1 (#" + j + " attempt)")
+        );
+      }
+    });
+  });
+
   describe("hasTokenSync method", function() {
     it("should not consume token", function() {
       var limiter = new FastRateLimit({
