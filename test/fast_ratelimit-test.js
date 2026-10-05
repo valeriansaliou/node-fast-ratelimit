@@ -484,5 +484,38 @@ describe("node-fast-ratelimit", function() {
           }
         });
     });
+
+    it("should skip rate limit", function(done) {
+      var options = {
+        threshold : 100,
+        ttl       : 10,
+        skip      : true
+      };
+
+      var namespace = "127.0.0.1";
+      var limiter = new FastRateLimit(options);
+
+      var promises_all = [];
+
+      for (var i = 1; i <= (options.threshold + 5); i++) {
+        promises_all.push(
+          limiter.consume(namespace)
+        );
+      }
+
+      __Promise.all(promises_all)
+        .then(function() {
+          done();
+        })
+        .catch(function(error) {
+          if (error) {
+            done(error);
+          } else {
+            done(
+              new Error("Limiter consume should not fail at the end (reject)")
+            );
+          }
+        });
+    });
   });
 });
